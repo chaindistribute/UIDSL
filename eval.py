@@ -43,9 +43,9 @@ def preprocess(layouts: List[Layout], max_len: int, device: torch.device):
             [True for _ in range(l.shape[0])] + [False for _ in range(pad_len)]
         )
         layout["mask"].append(mask)
-    bbox = torch.stack(layout["bbox"], dim=0).to(device)
+    bbox  = torch.stack(layout["bbox"], dim=0).to(device)
     label = torch.stack(layout["label"], dim=0).to(device)
-    mask = torch.stack(layout["mask"], dim=0).to(device)
+    mask  = torch.stack(layout["mask"], dim=0).to(device)
     padding_mask = ~mask
     return bbox, label, padding_mask, mask
 

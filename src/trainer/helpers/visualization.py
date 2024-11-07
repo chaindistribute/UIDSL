@@ -206,7 +206,9 @@ def save_label_with_size(
         text = f"{names[l]} ({w},{h})"
         add_width = 0
 
-        width = d.textsize(text, font=fnt)[0]
+        # width = d.textsize(text, font=fnt)[0]
+        bbox1 = d.textbbox((0, 0), text, font=fnt)
+        width = bbox1[2] - bbox1[0]  # 计算文本宽度
         bbox = d.textbbox(
             (x_offset - (width + add_width) / 2, y_offset), text, font=fnt
         )
